@@ -1,0 +1,12 @@
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: datasciencebucket
+  namespace: openshift-storage
+spec:
+  additionalConfig:
+    bucketclass: noobaa-default-bucket-class
+  bucketName: datasciencebucket
+  generateBucketName: datasciencebucket
+  objectBucketName: obc-openshift-storage-datasciencebucket
+  storageClassName: openshift-storage.noobaa.io

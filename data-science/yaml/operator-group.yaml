@@ -1,0 +1,9 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: openshift-ods-operator-group
+  namespace: openshift-ods-operator
+spec:
+  targetNamespaces:
+  - openshift-ods-operator
+  upgradeStrategy: Default

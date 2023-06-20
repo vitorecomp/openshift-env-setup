@@ -1,0 +1,14 @@
+apiVersion: project.openshift.io/v1
+kind: Project
+metadata:
+  annotations:
+    openshift.io/description: ""
+    openshift.io/display-name: my-datascience-project
+  labels:
+    kubernetes.io/metadata.name: my-datascience-project
+    modelmesh-enabled: "true"
+    opendatahub.io/dashboard: "true"
+  name: my-datascience-project
+spec:
+  finalizers:
+  - kubernetes
