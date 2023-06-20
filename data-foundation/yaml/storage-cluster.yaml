@@ -7,6 +7,7 @@ metadata:
     - apiVersion: odf.openshift.io/v1alpha1
       kind: StorageSystem
       name: ocs-storagecluster-storagesystem
+      uid: "$uid"
 spec:
   arbiter: {}
   encryption:
@@ -36,7 +37,7 @@ spec:
             - ReadWriteOnce
           resources:
             requests:
-              storage: 2Ti
+              storage: 512Gi
           storageClassName: gp3-csi
           volumeMode: Block
         status: {}
