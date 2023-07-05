@@ -1,0 +1,72 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  namespace: openshift-machine-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: cluster-$CLUSTER_IDENTIFIER
+      machine.openshift.io/cluster-api-machineset: cluster-$CLUSTER_IDENTIFIER-worker-us-west-2a
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: cluster-$CLUSTER_IDENTIFIER
+        machine.openshift.io/cluster-api-machine-role: worker
+        machine.openshift.io/cluster-api-machine-type: worker
+        machine.openshift.io/cluster-api-machineset: cluster-$CLUSTER_IDENTIFIER-worker-us-west-2a
+    spec:
+      lifecycleHooks: {}
+      metadata: {}
+      providerSpec:
+        value:
+          userDataSecret:
+            name: worker-user-data
+          placement:
+            availabilityZone: us-west-2a
+            region: us-west-2
+          credentialsSecret:
+            name: aws-cloud-credentials
+          instanceType: p3.2xlarge
+          metadata:
+            creationTimestamp: null
+          blockDevices:
+            - ebs:
+                encrypted: true
+                iops: 0
+                kmsKey:
+                  arn: ''
+                volumeSize: 100
+                volumeType: gp2
+          securityGroups:
+            - filters:
+                - name: 'tag:Name'
+                  values:
+                    - cluster-$CLUSTER_IDENTIFIER-worker-sg
+          kind: AWSMachineProviderConfig
+          tags:
+            - name: kubernetes.io/cluster/cluster-$CLUSTER_IDENTIFIER
+              value: owned
+            - name: platform
+              value: $PLATFORM
+            - name: uuid
+              value: $UUID
+            - name: Stack
+              value: $STACK
+            - name: env_type
+              value: ocp4-cluster
+            - name: guid
+              value: $GUID
+            - name: owner
+              value: unknown
+          deviceIndex: 0
+          ami:
+            id: $AMI_ID
+          subnet:
+            filters:
+              - name: 'tag:Name'
+                values:
+                  - cluster-$CLUSTER_IDENTIFIER-private-us-west-2a
+          apiVersion: awsproviderconfig.openshift.io/v1beta1
+          iamInstanceProfile:
+            id: cluster-$CLUSTER_IDENTIFIER-worker-profile
