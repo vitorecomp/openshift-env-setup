@@ -24,6 +24,6 @@ The script build a application conf, the arguments are:
 
 ## Help
 
-## COntributions
+## Contributions
 
 ## References
