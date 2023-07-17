@@ -1,8 +1,10 @@
 # openshift-env-setup
 
+<!-- markdownlint-disable MD033 -->
 <p align="center">
   <img width="460" height="400" src="docs/images/repo-image.webp">
 </p>
+<!-- markdownlint-enable MD033 -->
 
 Set of script to setup a OpenShift environment, this scripts provides a way to create a complete to cluster with all the necessary components to tun complex applications.
 
