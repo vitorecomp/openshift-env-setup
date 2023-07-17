@@ -2,7 +2,7 @@
 
 <!-- markdownlint-disable MD033 -->
 <p align="center">
-  <img width="460" height="400" src="docs/images/repo-image.webp">
+  <img width="460" height="400" src="docs/images/repo-image-bg.png">
 </p>
 <!-- markdownlint-enable MD033 -->
 
